@@ -4,25 +4,25 @@ import { useState, useEffect, useCallback } from 'react';
 import { TOTAL_SLIDES } from './slides-data';
 
 export function useSlideNavigation() {
-  const [currentSlide, setCurrentSlide] = useState(1);
+  const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState(0);
 
   const goToSlide = useCallback((slideNum: number) => {
-    if (slideNum >= 1 && slideNum <= TOTAL_SLIDES) {
+    if (slideNum >= 0 && slideNum < TOTAL_SLIDES) {
       setDirection(slideNum > currentSlide ? 1 : -1);
       setCurrentSlide(slideNum);
     }
   }, [currentSlide]);
 
   const nextSlide = useCallback(() => {
-    if (currentSlide < TOTAL_SLIDES) {
+    if (currentSlide < TOTAL_SLIDES - 1) {
       setDirection(1);
       setCurrentSlide(prev => prev + 1);
     }
   }, [currentSlide]);
 
   const prevSlide = useCallback(() => {
-    if (currentSlide > 1) {
+    if (currentSlide > 0) {
       setDirection(-1);
       setCurrentSlide(prev => prev - 1);
     }
@@ -38,10 +38,10 @@ export function useSlideNavigation() {
         prevSlide();
       } else if (e.key === 'Home') {
         e.preventDefault();
-        goToSlide(1);
+        goToSlide(0);
       } else if (e.key === 'End') {
         e.preventDefault();
-        goToSlide(TOTAL_SLIDES);
+        goToSlide(TOTAL_SLIDES - 1);
       }
     };
 
@@ -55,8 +55,8 @@ export function useSlideNavigation() {
     nextSlide,
     prevSlide,
     goToSlide,
-    isFirst: currentSlide === 1,
-    isLast: currentSlide === TOTAL_SLIDES,
-    progress: (currentSlide / TOTAL_SLIDES) * 100,
+    isFirst: currentSlide === 0,
+    isLast: currentSlide === TOTAL_SLIDES - 1,
+    progress: ((currentSlide + 1) / TOTAL_SLIDES) * 100,
   };
 }

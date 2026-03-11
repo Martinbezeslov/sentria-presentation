@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useSlideNavigation } from '@/lib/useSlideNavigation';
 import { TOTAL_SLIDES } from '@/lib/slides-data';
 import {
+  Slide00Intro,
   Slide01Hook,
   Slide02Problem,
   Slide03Accounting,
@@ -25,6 +26,7 @@ import {
 } from '@/components/slides';
 
 const slideComponents: Record<number, React.ComponentType> = {
+  0: Slide00Intro,
   1: Slide01Hook,
   2: Slide02Problem,
   3: Slide03Accounting,
@@ -79,7 +81,7 @@ export default function Home() {
 
       {/* Slide counter */}
       <div className="absolute top-4 right-4 z-50 text-small text-[var(--text-muted)]">
-        {currentSlide} / {TOTAL_SLIDES}
+        {currentSlide + 1} / {TOTAL_SLIDES}
       </div>
 
       {/* Navigation hints */}

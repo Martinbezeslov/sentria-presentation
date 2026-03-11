@@ -1,3 +1,4 @@
+export { Slide00Intro } from './Slide00Intro';
 export { Slide01Hook } from './Slide01Hook';
 export { Slide02Problem } from './Slide02Problem';
 export { Slide03Accounting } from './Slide03Accounting';

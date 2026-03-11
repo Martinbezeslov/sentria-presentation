@@ -6,6 +6,8 @@ export interface SlideData {
 }
 
 export const slides: SlideData[] = [
+  // Intro
+  { id: 0, title: 'O mně', section: 'intro', accentColor: 'warm' },
   // ERP část
   { id: 1, title: 'Hook', section: 'erp', accentColor: 'warm' },
   { id: 2, title: 'Účetní pohádka', section: 'erp', accentColor: 'warm' },
